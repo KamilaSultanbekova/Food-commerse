@@ -21,7 +21,13 @@ import {
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Rating from "@mui/material/Rating";
+import { useSelector, useDispatch } from "react-redux";
+import { toggleCart } from "../Slice/cartSlice";
+import { NavLink } from "react-router-dom";
 export default function HomeCards() {
+  const cart = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
+  const getKey = (p) => p?._id ?? p?.id;
   return (
     <div className="px-40 pt-10 container mx-auto ">
       <div className="flex justify-between gap-10">
@@ -79,7 +85,9 @@ export default function HomeCards() {
               </h1>
               <h1 className="text-sm text-gray-400 my-1">{data.desc}</h1>
               <button className="bg-white rounded-full py-2 px-3 border border-gray-400 mt-2 hover:bg-gray-200">
-                Shop Now <ArrowRightAltIcon />
+                <NavLink to="/filterfruits">
+                  Shop Now <ArrowRightAltIcon />{" "}
+                </NavLink>
               </button>
             </div>
           </div>
@@ -95,29 +103,44 @@ export default function HomeCards() {
             </h1>
           </div>
           <button className="border border-gray-400 rounded-full py-1 px-3 text-sm font-semibold hover:bg-gray-200">
-            View all <ArrowRightAltIcon />
+            <NavLink to="/filterbeverages">
+              View All <ArrowRightAltIcon />{" "}
+            </NavLink>{" "}
           </button>
         </div>
         <div className="flex gap-5">
-          {CardData.map((data) => (
-            <div
-              key={data._id}
-              className=" border border-gray-200 p-3 py-5 rounded-md"
-            >
-              <img src={data.img} />
-              <span className="bg-blue-200 rounded-full px-2 text-sm font-semibold">
-                {data.type}
-              </span>
-              <h1 className="font-semibold py-2">{data.title}</h1>
-              <div className="flex pt-2">
-                <h1 className="text-xl text-red-600 font-bold">{data.price}</h1>
-                <s className="font-semibold text-sm pl-1  ">{data.lastprice}</s>
+          {CardData.map((data) => {
+            const key = getKey(data);
+            const isInCart = cart.some((item) => getKey(item) === key);
+
+            return (
+              <div
+                key={key}
+                className=" border border-gray-200 p-3 py-5 rounded-md"
+              >
+                <img src={data.img} />
+                <span className="bg-blue-200 rounded-full px-2 text-sm font-semibold">
+                  {data.type}
+                </span>
+                <h1 className="font-semibold py-2">{data.title}</h1>
+                <div className="flex pt-2">
+                  <h1 className="text-xl text-red-600 font-bold">
+                    {data.price}
+                  </h1>
+                  <s className="font-semibold text-sm pl-1  ">
+                    {data.lastprice}
+                  </s>
+                </div>
+                <button></button>
+                <button
+                  className="text-sm text-gray-500 mt-3 border border-gray-500 rounded-full font-semibold pl-5 py-2 pr-23 text-left hover:bg-gray-200"
+                  onClick={() => dispatch(toggleCart(data))}
+                >
+                  {isInCart ? <h1>Added to Cart</h1> : <h1> Add to cart</h1>}
+                </button>
               </div>
-              <button className="text-sm text-gray-500 mt-3 border border-gray-500 rounded-full font-semibold pl-5 py-2 pr-23 text-left hover:bg-gray-200">
-                Add to cart
-              </button>
-            </div>
-          ))}
+            );
+          })}
         </div>
         <div className="flex mt-4 gap-2">
           {BigBanners.map((data) => (
@@ -143,33 +166,41 @@ export default function HomeCards() {
           ))}
         </div>
         <div className="flex mt-7">
-          {CardData2.map((data) => (
-            <div
-              key={data._id}
-              className=" border border-gray-200 p-3 rounded-md"
-            >
-              <img className="w-100 height-100" src={data.img} />
-              <h1 className="font-semibold text-sm py-2">{data.title1}</h1>
-              <Rating
-                name={`rating-${data._id}`}
-                value={data.rating}
-                size="small"
-                readOnly
-              />
-              <div className="flex pt-2">
-                <h1 className="text-xl text-red-600 font-bold">{data.price}</h1>
-                <s className="font-semibold text-sm pl-1  ">{data.lastprice}</s>
-              </div>
-              <div className="flex py-3">
-                <div className="bg-[#16A34A] hover:bg-[#157e3b] rounded-md p-1">
-                  <ShoppingCartIcon fontSize="medium" />
+          {CardData2.map((data) => {
+            const key = getKey(data);
+            const isInCart = cart.some((item) => getKey(item) === key);
+
+            return (
+              <div
+                key={key}
+                className=" border border-gray-200 p-3 py-5 rounded-md"
+              >
+                <img src={data.img} />
+                <h1 className="font-semibold py-2">{data.title1}</h1>
+                <Rating
+                  name={`rating-${key}`}
+                  value={data.rating}
+                  size="small"
+                  readOnly
+                />
+                <div className="flex pt-2">
+                  <h1 className="text-xl text-red-600 font-bold">
+                    {data.price}
+                  </h1>
+                  <s className="font-semibold text-sm pl-1  ">
+                    {data.lastprice}
+                  </s>
                 </div>
-                <h1 className="text-[#16A34A] font-semibold pl-2 pt-1">
-                  {data.status}
-                </h1>
+                <button></button>
+                <button
+                  className="text-sm text-gray-500 mt-3 border border-gray-500 rounded-full font-semibold pl-5 py-2 pr-23 text-left hover:bg-gray-200"
+                  onClick={() => dispatch(toggleCart(data))}
+                >
+                  {isInCart ? <h1>Added to Cart</h1> : <h1> Add to cart</h1>}
+                </button>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
         <div className="grid grid-cols-2 gap-2 mt-4">
           {BnTwo.map((data) => (
@@ -188,7 +219,9 @@ export default function HomeCards() {
                 </h1>
                 <h1 className="text-sm text-gray-400 my-1">{data.desc}</h1>
                 <button className="bg-white rounded-full py-2 px-3 border border-gray-400 mt-2 hover:bg-gray-200">
-                  Shop Now <ArrowRightAltIcon />
+                  <NavLink to="/filterbeverages">
+                    Shop Now <ArrowRightAltIcon />{" "}
+                  </NavLink>
                 </button>
               </div>
             </div>
@@ -202,95 +235,115 @@ export default function HomeCards() {
             </h1>
           </div>
           <button className="border border-gray-400 rounded-full py-1 px-3 text-sm font-semibold hover:bg-gray-200">
-            View all <ArrowRightAltIcon />
+            <NavLink to="/filterbeverages">
+              Shop Now <ArrowRightAltIcon />{" "}
+            </NavLink>
           </button>
         </div>
         <div className="flex mt-4">
           <div className="grid grid-cols-2">
-            {CardsThree.map((data) => (
-              <div
-                key={data._id}
-                className=" border border-gray-200 p-1 py-2 rounded-md w-50"
-              >
-                <img className="w-40 items-center" src={data.img} />
-                <div className="ml-2">
-                  <span className="bg-blue-200 rounded-full px-2 text-sm font-semibold">
-                    {data.type}
-                  </span>
-                  <h1 className="font-semibold py-2">{data.title}</h1>
-                  <Rating
-                    name={`rating-${data._id}`}
-                    value={data.rating}
-                    size="small"
-                    readOnly
-                  />
-                  <div className="flex pt-2">
-                    <h1 className="text-xl text-red-600 font-bold">
-                      {data.price}
-                    </h1>
-                    <s className="font-semibold text-sm pl-1  ">
-                      {data.lastprice}
-                    </s>
+            {CardsThree.map((data) => {
+              const key = getKey(data);
+              const isInCart = cart.some((item) => getKey(item) === key);
+              return (
+                <div
+                  key={data._id}
+                  className=" border border-gray-200 p-1 py-2 rounded-md w-50"
+                >
+                  <img className="w-40 items-center" src={data.img} />
+                  <div className="ml-2">
+                    <span className="bg-blue-200 rounded-full px-2 text-sm font-semibold">
+                      {data.type}
+                    </span>
+                    <h1 className="font-semibold py-2">{data.title}</h1>
+                    <Rating
+                      name={`rating-${data._id}`}
+                      value={data.rating}
+                      size="small"
+                      readOnly
+                    />
+                    <div className="flex pt-2">
+                      <h1 className="text-xl text-red-600 font-bold">
+                        {data.price}
+                      </h1>
+                      <s className="font-semibold text-sm pl-1  ">
+                        {data.lastprice}
+                      </s>
+                    </div>
                   </div>
-                </div>
-                <button className="text-sm text-gray-500 mt-3 border border-gray-500 rounded-full font-semibold pl-5 py-2 pr-23 text-left hover:bg-gray-200">
-                  Add to cart
-                </button>
-              </div>
-            ))}
-          </div>
-          <div className="grid grid-cols-1">
-            {InnerBanner.map((data) => (
-              <div
-                key={data._id}
-                className=" rounded-md bg-center bg-cover mx-auto w-100"
-                style={{ backgroundImage: `url(${data.bg})` }}
-              >
-                <div className="pt-10 pl-5 pb-10">
-                  <h1 className="text-[#EA580C] my-1">{data.time}</h1>
-                  <h1 className="text-[#111827] font-bold text-xl">
-                    {data.title1}
-                  </h1>
-                  <h1 className="text-[#111827] font-bold text-xl">
-                    {data.title2}
-                  </h1>
-                  <h1 className="text-sm text-gray-400 my-1">{data.desc}</h1>
-                  <button className="bg-white rounded-full py-2 px-3 border border-gray-300 mt-2 hover:bg-gray-200">
-                    Shop Now <ArrowRightAltIcon />
+                  <button
+                    className="text-sm text-gray-500 mt-3 border border-gray-500 rounded-full font-semibold pl-5 py-2 pr-23 text-left hover:bg-gray-200"
+                    onClick={() => dispatch(toggleCart(data))}
+                  >
+                    {isInCart ? <h1>Added to Cart</h1> : <h1> Add to cart</h1>}
                   </button>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
-          <div className="grid grid-cols-2">
-            {CardsFour.map((data) => (
-              <div
-                key={data._id}
-                className=" border border-gray-200 p-1 py-2 rounded-md w-50"
-              >
-                <img className="w-40" src={data.img} />
-                <div className="ml-2 mt-5">
-                  <h1 className="font-semibold py-2">{data.title}</h1>
-                  <Rating
-                    name={`rating-${data._id}`}
-                    value={data.rating}
-                    size="small"
-                    readOnly
-                  />
-                  <div className="flex pt-2">
-                    <h1 className="text-xl text-red-600 font-bold">
-                      {data.price}
+          <div className="grid grid-cols-1">
+            {InnerBanner.map((data) => {
+              return (
+                <div
+                  key={data._id}
+                  className=" rounded-md bg-center bg-cover mx-auto w-100"
+                  style={{ backgroundImage: `url(${data.bg})` }}
+                >
+                  <div className="pt-10 pl-5 pb-10">
+                    <h1 className="text-[#EA580C] my-1">{data.time}</h1>
+                    <h1 className="text-[#111827] font-bold text-xl">
+                      {data.title1}
                     </h1>
-                    <s className="font-semibold text-sm pl-1">
-                      {data.lastprice}
-                    </s>
+                    <h1 className="text-[#111827] font-bold text-xl">
+                      {data.title2}
+                    </h1>
+                    <h1 className="text-sm text-gray-400 my-1">{data.desc}</h1>
+                    <button className="bg-white rounded-full py-2 px-3 border border-gray-300 mt-2 hover:bg-gray-200">
+                      <NavLink to="/filterfruits">
+                        Shop Now <ArrowRightAltIcon />{" "}
+                      </NavLink>
+                    </button>
                   </div>
                 </div>
-                <button className="text-sm text-gray-500 mt-3 border border-gray-500 rounded-full font-semibold pl-5 py-2 pr-23 text-left hover:bg-gray-200">
-                  Add to cart
-                </button>
-              </div>
-            ))}
+              );
+            })}
+          </div>
+          <div className="grid grid-cols-2">
+            {CardsFour.map((data) => {
+              const key = getKey(data);
+              const isInCart = cart.some((item) => getKey(item) === key);
+              return (
+                <div
+                  key={data._id}
+                  className=" border border-gray-200 p-1 py-2 rounded-md w-50"
+                >
+                  <img className="w-40" src={data.img} />
+                  <div className="ml-2 mt-5">
+                    <h1 className="font-semibold py-2">{data.title}</h1>
+                    <Rating
+                      name={`rating-${data._id}`}
+                      value={data.rating}
+                      size="small"
+                      readOnly
+                    />
+                    <div className="flex pt-2">
+                      <h1 className="text-xl text-red-600 font-bold">
+                        {data.price}
+                      </h1>
+                      <s className="font-semibold text-sm pl-1">
+                        {data.lastprice}
+                      </s>
+                    </div>
+                  </div>
+                  <button
+                    className="text-sm text-gray-500 mt-3 border border-gray-500 rounded-full font-semibold pl-5 py-2 pr-23 text-left hover:bg-gray-200"
+                    onClick={() => dispatch(toggleCart(data))}
+                  >
+                    {isInCart ? <h1>Added to Cart</h1> : <h1> Add to cart</h1>}
+                  </button>
+                </div>
+              );
+            })}
           </div>
         </div>
         <div className="my-10">
