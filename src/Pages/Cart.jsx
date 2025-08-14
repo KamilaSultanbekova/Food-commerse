@@ -1,18 +1,20 @@
 import { useSelector } from "react-redux";
 import Rating from "@mui/material/Rating";
+import { Link } from "react-router-dom";
+import Checkout from "./Checkout";
 
 export default function Favorite() {
   const cart = useSelector((state) => state.cart);
 
   return (
-    <section className="px-40 py-2 container mx-auto flex justify-between gap-10">
+    <section className="px-40 py-2 container mx-auto">
       <div className="">
-        <h2 className=" text-3xl font-bold my-5 absolute left-1/2 transform -translate-x-1/2">
+        <h2 className=" text-3xl font-bold my-5 flex justify-center">
           My Cart
         </h2>
 
         {cart.length === 0 ? (
-          <h1>You have no items in your cart.</h1>
+          <h1 className="ml-124">You have no items in your cart.</h1>
         ) : (
           <div className="flex mt-25">
             {cart.map((product) => (
@@ -62,6 +64,14 @@ export default function Favorite() {
           </div>
         )}
       </div>
+
+     {cart.length !== 0 ? (
+       <div className="flex justify-end">
+        <Link to="/checkout"><h1 className="bg-[#634C9F] px-3 py-2 rounded-xl text-white text-sm font-semibold">Order</h1></Link>
+      </div>
+     ): (
+<span></span>
+     )}
     </section>
   );
 }
