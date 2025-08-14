@@ -5,9 +5,14 @@ import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { logout } from "../Slice/authSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function Navbar() {
+  const { isAuthenticated, user } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -60,8 +65,8 @@ export default function Navbar() {
         <div>
           <FmdGoodOutlinedIcon fontSize="large" />
         </div>
-        <h1 className="text-gray-500">
-          Deliver to <br />
+        <h1 className="text-gray-500 text-sm">
+          Deliver to<br />
           <span className="text-gray-800 font-semibold">all</span>
         </h1>
         <input
@@ -72,17 +77,34 @@ export default function Navbar() {
         <span className="absolute right-125 -translate-y-1/2 top-30">
           <SearchIcon fontSize="large" />
         </span>
-        <NavLink to="/login">
-          <div className="flex">
-            <div>
-              <PersonOutlinedIcon fontSize="large" />
-            </div>
-            <div>
-              <h1 className="text-gray-500 text-sm">Sign in</h1>
-              <h1 className="font-semibold">Account</h1>
-            </div>
+        <div className="flex gap-2 ">
+          <div>
+            <PersonOutlinedIcon fontSize="large" />
           </div>
-        </NavLink>
+          {isAuthenticated ? (
+            <>
+              <span>Hi, {user.name}</span>
+              <button
+                onClick={() => dispatch(logout())}
+                className="bg-black text-white px-3  rounded"
+              >
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+             <div>
+               <Link to="/register" className="text-black">
+                Sign in
+              </Link> <br />
+              <Link to="/login" className="text-black">
+                Login
+              </Link>
+             </div>
+            </>
+          )}
+        </div>
+
         <NavLink to="favourites">
           <FavoriteBorderOutlinedIcon fontSize="large" />
         </NavLink>
@@ -93,14 +115,24 @@ export default function Navbar() {
       <div className="px-40 pt-3 container mx-auto flex justify-between">
         <div className="flex gap-4">
           <select onChange={handleChange} className="font-semibold" name="Home">
-            <option value="/" defaultValue={true}>Home</option>
+            <option value="/" defaultValue={true}>
+              Home
+            </option>
             <option value="/filterfruits">Fruits & Vegetables</option>
             <option value="/filterbeverages">Beverages</option>
           </select>
-          <NavLink to='/filterfruits'><h1 className="font-semibold">Fruits & Vegetables</h1></NavLink>
-         <NavLink to='/filterbeverages'><h1 className="font-semibold">Beverages</h1></NavLink>
-          <NavLink to='/blog'><h1 className="font-semibold">Blog</h1></NavLink>
-          <NavLink to='/contact'><h1 className="font-semibold">Contact</h1></NavLink>
+          <NavLink to="/filterfruits">
+            <h1 className="font-semibold">Fruits & Vegetables</h1>
+          </NavLink>
+          <NavLink to="/filterbeverages">
+            <h1 className="font-semibold">Beverages</h1>
+          </NavLink>
+          <NavLink to="/blog">
+            <h1 className="font-semibold">Blog</h1>
+          </NavLink>
+          <NavLink to="/contact">
+            <h1 className="font-semibold">Contact</h1>
+          </NavLink>
         </div>
         <div className="flex gap-4">
           <select className="font-semibold" name="Trending Products" id="">

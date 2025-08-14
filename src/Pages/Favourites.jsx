@@ -12,12 +12,12 @@ export default function Favorite() {
   return (
     <section className="px-40 py-2 container mx-auto flex justify-between gap-10">
       <div className="">
-        <h2 className=" text-3xl font-bold my-5 absolute left-1/2 transform -translate-x-1/2">
+        <h2 className=" text-3xl font-bold my-5 flex justify-center ml-130">
           My Favorites
         </h2>
 
         {favorites.length === 0 ? (
-          <h1>You haven’t liked any product yet.</h1>
+          <h1 className="ml-124">You haven’t liked any product yet.</h1>
         ) : (
           <div className="flex mt-25">
             {favorites.map((product) => (

@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import PriceFilter from "../Components/FilterSideBartwo";
 import bgimg from "../assets/banner-33.jpg.png";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
@@ -10,6 +11,8 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import DoneIcon from "@mui/icons-material/Done";
 import { toggleLike } from "../Slice/favoritesSlice";
 import { toggleCart } from "../Slice/cartSlice";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+
 
 export default function FilterBeverages() {
   const { filteredProducts } = useSelector((state) => state.fruitsfilter);
@@ -110,6 +113,10 @@ export default function FilterBeverages() {
                   <h1 className="text-[#16A34A] font-semibold pl-2 pt-1">
                     {data.status}
                   </h1>
+                    <Link to={`/products/${data._id}`}>
+                    <VisibilityIcon fontSize="medium" />
+                  </Link>
+                  
                 </div>
               </div>
             );
