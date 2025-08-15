@@ -5,6 +5,8 @@ import FruitReducer from './fruitSlice'
 import favoritesReducer from "./favoritesSlice";
 import cartReducer from "./cartSlice";
 import authReducer from "./authSlice"
+import checkoutReducer from "./checkoutSlice"  
+import vendorReducer from "./vendorSlice"  
 export const store = configureStore({
     reducer: {
         form: formReducer,
@@ -13,6 +15,8 @@ export const store = configureStore({
         favorites: favoritesReducer,
         cart: cartReducer,
         auth: authReducer,
+        checkout: checkoutReducer,
+        vendor: vendorReducer,
 
     }
 })
