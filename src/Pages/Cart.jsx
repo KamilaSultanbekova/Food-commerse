@@ -3,7 +3,7 @@ import Rating from "@mui/material/Rating";
 import { Link } from "react-router-dom";
 import Checkout from "./Checkout";
 
-export default function Favorite() {
+export default function Cart() {
   const cart = useSelector((state) => state.cart);
 
   return (
@@ -65,13 +65,17 @@ export default function Favorite() {
         )}
       </div>
 
-     {cart.length !== 0 ? (
-       <div className="flex justify-end">
-        <Link to="/checkout"><h1 className="bg-[#634C9F] px-3 py-2 rounded-xl text-white text-sm font-semibold">Order</h1></Link>
-      </div>
-     ): (
-<span></span>
-     )}
+      {cart.length !== 0 ? (
+        <div className="flex justify-end">
+          <Link to="/checkout">
+            <h1 className="bg-[#634C9F] px-3 py-2 rounded-xl text-white text-sm font-semibold">
+              Order
+            </h1>
+          </Link>
+        </div>
+      ) : (
+        <span></span>
+      )}
     </section>
   );
 }

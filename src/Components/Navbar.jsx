@@ -66,7 +66,8 @@ export default function Navbar() {
           <FmdGoodOutlinedIcon fontSize="large" />
         </div>
         <h1 className="text-gray-500 text-sm">
-          Deliver to<br />
+          Deliver to
+          <br />
           <span className="text-gray-800 font-semibold">all</span>
         </h1>
         <input
@@ -77,30 +78,44 @@ export default function Navbar() {
         <span className="absolute right-125 -translate-y-1/2 top-30">
           <SearchIcon fontSize="large" />
         </span>
-        <div className="flex gap-2 ">
-          <div>
-            <PersonOutlinedIcon fontSize="large" />
-          </div>
+        <div className="flex gap-2  ">
           {isAuthenticated ? (
             <>
-              <span>Hi, {user.name}</span>
+              <Link to="/vendor">
+                <div>
+                  <PersonOutlinedIcon fontSize="large" />
+                </div>
+              </Link>
+            </>
+          ) : (
+            <>
+              <Link to="/register" className="text-black">
+                <PersonOutlinedIcon fontSize="large" />
+              </Link>{" "}
+            </>
+          )}
+
+          {isAuthenticated ? (
+            <>
+              <span className="text-sm">Hi, {user.name}</span>
               <button
                 onClick={() => dispatch(logout())}
-                className="bg-black text-white px-3  rounded"
+                className="pb-1 px-1 bg-black text-white h-10  rounded-xl"
               >
                 Logout
               </button>
             </>
           ) : (
             <>
-             <div>
-               <Link to="/register" className="text-black">
-                Sign in
-              </Link> <br />
-              <Link to="/login" className="text-black">
-                Login
-              </Link>
-             </div>
+              <div>
+                <Link to="/register" className="text-black">
+                  Sign in
+                </Link>{" "}
+                <br />
+                <Link to="/login" className="text-black">
+                  Login
+                </Link>
+              </div>
             </>
           )}
         </div>
