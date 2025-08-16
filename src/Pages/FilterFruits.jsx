@@ -12,13 +12,31 @@ import DoneIcon from "@mui/icons-material/Done";
 import { toggleLike } from "../Slice/favoritesSlice";
 import { toggleCart } from "../Slice/cartSlice";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-
+import { addNewProductToFilter } from "../Slice/fruitSlice";
 
 export default function FilterBeverages() {
+  const dispatch = useDispatch();
+  const productsAll = useSelector((state) => state.products);
   const { filteredProducts } = useSelector((state) => state.fruitsfilter);
+  const isFirst = React.useRef(true);
+
+  React.useEffect(() => {
+    if (isFirst.current) {
+      isFirst.current = false;
+      return;
+    }
+
+    if (productsAll.length > 0) {
+      const lastProduct = productsAll[productsAll.length - 1];
+      const exists = filteredProducts.some((p) => p._id === lastProduct._id);
+
+      if (!exists) {
+        dispatch(addNewProductToFilter(lastProduct));
+      }
+    }
+  }, [productsAll, filteredProducts, dispatch]);
   const favorites = useSelector((state) => state.favorites);
   const cart = useSelector((state) => state.cart);
-  const dispatch = useDispatch();
   const getKey = (p) => p?._id ?? p?.id;
 
   return (
@@ -26,7 +44,6 @@ export default function FilterBeverages() {
       <div>
         <PriceFilter />
       </div>
-
       <div>
         <div
           className="h-[330px] bg-center bg-cover mx-auto rounded-xl"
@@ -40,7 +57,7 @@ export default function FilterBeverages() {
               Grocery store with different <br /> treasures
             </h1>
             <h1 className="text-gray-400 w-120 pt-3">
-              We have prepared special discounts for you on grocery <br />
+              We have prepared special discounts for you on grocery <br />{" "}
               products...
             </h1>
             <div className="flex mt-5 gap-4">
@@ -50,13 +67,11 @@ export default function FilterBeverages() {
             </div>
           </div>
         </div>
-
         <div className="mt-4 grid grid-cols-5">
           {filteredProducts.map((data) => {
             const key = getKey(data);
             const isFavorite = favorites.some((item) => getKey(item) === key);
             const isInCart = cart.some((item) => getKey(item) === key);
-
             return (
               <div
                 key={key}
@@ -66,7 +81,6 @@ export default function FilterBeverages() {
                   <h1 className="bg-red-600 rounded-full text-[10px] text-white p-1">
                     {data.discount}
                   </h1>
-
                   <button onClick={() => dispatch(toggleLike(data))}>
                     {isFavorite ? (
                       <FavoriteIcon fontSize="small" color="error" />
@@ -75,13 +89,11 @@ export default function FilterBeverages() {
                     )}
                   </button>
                 </div>
-
                 <img
                   className="w-28 h-30 mx-auto"
                   src={data.img}
                   alt={data.name}
                 />
-
                 <h1 className="text-md py-2">{data.name}</h1>
                 <div className="flex items-center gap-2">
                   <Rating
@@ -92,31 +104,28 @@ export default function FilterBeverages() {
                   />
                   <h1 className="text-gray-400">{data.rating}</h1>
                 </div>
-
                 <div className="flex pt-2">
                   <h1 className="text-xl text-red-600 font-bold">
                     {data.price}
                   </h1>
                   <s className="font-semibold text-sm pl-1">{data.lastprice}</s>
                 </div>
-
                 <div className="flex py-3">
                   <div className="bg-[#16A34A] hover:bg-[#157e3b] rounded-md p-1">
                     <button onClick={() => dispatch(toggleCart(data))}>
                       {isInCart ? (
-                        <DoneIcon fontSize="meduim" color="error" />
+                        <DoneIcon fontSize="medium" color="error" />
                       ) : (
-                        <ShoppingCartIcon fontSize="meduim" />
+                        <ShoppingCartIcon fontSize="medium" />
                       )}
                     </button>
                   </div>
                   <h1 className="text-[#16A34A] font-semibold pl-2 pt-1">
                     {data.status}
                   </h1>
-                    <Link to={`/products/${data._id}`}>
+                  <Link to={`/products/${data._id}`}>
                     <VisibilityIcon fontSize="medium" />
                   </Link>
-                  
                 </div>
               </div>
             );

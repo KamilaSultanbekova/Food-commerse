@@ -12,13 +12,33 @@ import DoneIcon from "@mui/icons-material/Done";
 import { toggleLike } from "../Slice/favoritesSlice";
 import { toggleCart } from "../Slice/cartSlice";
 import VisibilityIcon from "@mui/icons-material/Visibility";
+import { addNewProductToFilter } from "../Slice/fruitSlice";
 
 export default function FilterBeverages() {
+  const dispatch = useDispatch();
+  const productsAll = useSelector((state) => state.products);
   const { filteredProducts } = useSelector((state) => state.beveragesfilter);
   const favorites = useSelector((state) => state.favorites);
   const cart = useSelector((state) => state.cart);
-  const dispatch = useDispatch();
   const getKey = (p) => p?._id ?? p?.id;
+
+  const isFirst = React.useRef(true);
+
+  React.useEffect(() => {
+    if (isFirst.current) {
+      isFirst.current = false;
+      return;
+    }
+
+    if (productsAll.length > 0) {
+      const lastProduct = productsAll[productsAll.length - 1];
+      const exists = filteredProducts.some((p) => p._id === lastProduct._id);
+
+      if (!exists) {
+        dispatch(addNewProductToFilter(lastProduct));
+      }
+    }
+  }, [productsAll, filteredProducts, dispatch]);
 
   return (
     <div className="px-40 py-5 container mx-auto flex justify-between gap-10">

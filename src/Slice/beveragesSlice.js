@@ -23,8 +23,18 @@ const beveragesSlice = createSlice({
         }
       );
     },
+    addNewProductToFilter: (state, action) => {
+      state.filteredProducts.unshift(action.payload);
+    },
+    updateProductInFilter: (state, action) => {
+      const { _id, updatedData } = action.payload;
+      const index = state.filteredProducts.findIndex((item) => item._id === _id);
+      if (index !== -1) {
+        state.filteredProducts[index] = { ...state.filteredProducts[index], ...updatedData };
+      }
+    },
   },
 });
 
-export const { setPriceRange } = beveragesSlice.actions;
+export const { setPriceRange, updateProductInFilter, addNewProductToFilter } = beveragesSlice.actions;
 export default beveragesSlice.reducer;
