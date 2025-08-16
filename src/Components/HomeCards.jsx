@@ -19,14 +19,9 @@ import {
   CardsFour,
 } from "../Data/db";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Rating from "@mui/material/Rating";
-import { useSelector, useDispatch } from "react-redux";
-import { toggleCart } from "../Slice/cartSlice";
 import { NavLink } from "react-router-dom";
 export default function HomeCards() {
-  const cart = useSelector((state) => state.cart);
-  const dispatch = useDispatch();
   const getKey = (p) => p?._id ?? p?.id;
   return (
     <div className="px-40 pt-10 container mx-auto ">
@@ -111,7 +106,6 @@ export default function HomeCards() {
         <div className="flex gap-5">
           {CardData.map((data) => {
             const key = getKey(data);
-            const isInCart = cart.some((item) => getKey(item) === key);
 
             return (
               <div
@@ -131,13 +125,11 @@ export default function HomeCards() {
                     {data.lastprice}
                   </s>
                 </div>
-                <button></button>
-                <button
-                  className="text-sm text-gray-500 mt-3 border border-gray-500 rounded-full font-semibold pl-5 py-2 pr-23 text-left hover:bg-gray-200"
-                  onClick={() => dispatch(toggleCart(data))}
-                >
-                  {isInCart ? <h1>Added to Cart</h1> : <h1> Add to cart</h1>}
-                </button>
+                <NavLink to="/filterbeverages">
+                  <button className="text-sm text-gray-500 mt-3 border border-gray-500 rounded-full font-semibold pl-5 py-2 pr-23 text-left hover:bg-gray-200">
+                    <h1> Add to cart</h1>
+                  </button>
+                </NavLink>
               </div>
             );
           })}
@@ -158,9 +150,11 @@ export default function HomeCards() {
                   {data.title2}
                 </h1>
                 <h1 className="text-sm text-gray-400 my-1">{data.desc}</h1>
-                <button className="bg-white rounded-full py-2 px-3 border border-gray-400 mt-2 hover:bg-gray-200">
-                  Shop Now <ArrowRightAltIcon />
-                </button>
+                <NavLink to="filterfruits">
+                  <button className="bg-white rounded-full py-2 px-3 border border-gray-400 mt-2 hover:bg-gray-200">
+                    Shop Now <ArrowRightAltIcon />
+                  </button>
+                </NavLink>
               </div>
             </div>
           ))}
@@ -168,7 +162,6 @@ export default function HomeCards() {
         <div className="flex mt-7">
           {CardData2.map((data) => {
             const key = getKey(data);
-            const isInCart = cart.some((item) => getKey(item) === key);
 
             return (
               <div
@@ -191,13 +184,11 @@ export default function HomeCards() {
                     {data.lastprice}
                   </s>
                 </div>
-                <button></button>
-                <button
-                  className="text-sm text-gray-500 mt-3 border border-gray-500 rounded-full font-semibold pl-5 py-2 pr-23 text-left hover:bg-gray-200"
-                  onClick={() => dispatch(toggleCart(data))}
-                >
-                  {isInCart ? <h1>Added to Cart</h1> : <h1> Add to cart</h1>}
-                </button>
+                <NavLink to="/filterbeverages">
+                  <button className="text-sm text-gray-500 mt-3 border border-gray-500 rounded-full font-semibold pl-5 py-2 pr-23 text-left hover:bg-gray-200">
+                    <h1> Add to cart</h1>
+                  </button>
+                </NavLink>
               </div>
             );
           })}
@@ -243,11 +234,10 @@ export default function HomeCards() {
         <div className="flex mt-4">
           <div className="grid grid-cols-2">
             {CardsThree.map((data) => {
-              const key = getKey(data);
-              const isInCart = cart.some((item) => getKey(item) === key);
+              const key = getKey(data._id);
               return (
                 <div
-                  key={data._id}
+                  key={key}
                   className=" border border-gray-200 p-1 py-2 rounded-md w-50"
                 >
                   <img className="w-40 items-center" src={data.img} />
@@ -271,12 +261,11 @@ export default function HomeCards() {
                       </s>
                     </div>
                   </div>
-                  <button
-                    className="text-sm text-gray-500 mt-3 border border-gray-500 rounded-full font-semibold pl-5 py-2 pr-23 text-left hover:bg-gray-200"
-                    onClick={() => dispatch(toggleCart(data))}
-                  >
-                    {isInCart ? <h1>Added to Cart</h1> : <h1> Add to cart</h1>}
-                  </button>
+                  <NavLink to="filterbeverages">
+                    <button className="text-sm text-gray-500 mt-3 border border-gray-500 rounded-full font-semibold pl-5 py-2 pr-23 text-left hover:bg-gray-200">
+                      <h1> Add to cart</h1>
+                    </button>
+                  </NavLink>
                 </div>
               );
             })}
@@ -310,11 +299,10 @@ export default function HomeCards() {
           </div>
           <div className="grid grid-cols-2">
             {CardsFour.map((data) => {
-              const key = getKey(data);
-              const isInCart = cart.some((item) => getKey(item) === key);
+              const key = getKey(data._id);
               return (
                 <div
-                  key={data._id}
+                  key={key}
                   className=" border border-gray-200 p-1 py-2 rounded-md w-50"
                 >
                   <img className="w-40" src={data.img} />
@@ -335,12 +323,11 @@ export default function HomeCards() {
                       </s>
                     </div>
                   </div>
-                  <button
-                    className="text-sm text-gray-500 mt-3 border border-gray-500 rounded-full font-semibold pl-5 py-2 pr-23 text-left hover:bg-gray-200"
-                    onClick={() => dispatch(toggleCart(data))}
-                  >
-                    {isInCart ? <h1>Added to Cart</h1> : <h1> Add to cart</h1>}
-                  </button>
+                  <NavLink to="/filterfruits">
+                    <button className="text-sm text-gray-500 mt-3 border border-gray-500 rounded-full font-semibold pl-5 py-2 pr-23 text-left hover:bg-gray-200">
+                      <h1> Add to cart</h1>
+                    </button>
+                  </NavLink>
                 </div>
               );
             })}

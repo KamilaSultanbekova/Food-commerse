@@ -19,21 +19,21 @@ export default function PriceFilter() {
 
   return (
     <div>
-      <div className="p-4 border rounded-lg w-64">
+      <div className="p-4 border border-gray-300 rounded-lg w-64">
         <h2 className="font-bold mb-2">Widget price filter</h2>
         <div className="flex items-center space-x-2 mb-2">
           <input
             type="number"
             value={min}
             onChange={(e) => setMin(e.target.value)}
-            className="border rounded-lg p-2 w-20"
+            className="border border-gray-200 rounded-lg p-2 w-20"
           />
           <span>-</span>
           <input
             type="number"
             value={max}
             onChange={(e) => setMax(e.target.value)}
-            className="border rounded-lg p-2 w-20"
+            className="border border-gray-200 rounded-lg p-2 w-20"
           />
         </div>
 

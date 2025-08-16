@@ -1,7 +1,6 @@
 import { useSelector } from "react-redux";
 import Rating from "@mui/material/Rating";
 import { Link } from "react-router-dom";
-import Checkout from "./Checkout";
 
 export default function Cart() {
   const cart = useSelector((state) => state.cart);
@@ -16,7 +15,7 @@ export default function Cart() {
         {cart.length === 0 ? (
           <h1 className="ml-124">You have no items in your cart.</h1>
         ) : (
-          <div className="flex mt-25">
+          <div className="grid grid-cols-5 mt-25">
             {cart.map((product) => (
               <div
                 key={product._id}

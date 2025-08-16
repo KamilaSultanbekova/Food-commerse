@@ -129,7 +129,7 @@ export default function Navbar() {
       </div>
       <div className="px-40 pt-3 container mx-auto flex justify-between">
         <div className="flex gap-4">
-          <select onChange={handleChange} className="font-semibold" name="Home">
+          <select onChange={handleChange} className="font-semibold w-17" name="Home">
             <option value="/" defaultValue={true}>
               Home
             </option>

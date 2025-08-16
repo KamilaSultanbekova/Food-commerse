@@ -9,6 +9,7 @@ import Cart from "./Pages/Cart";
 import Favourites from "./Pages/Favourites";
 import Blog from "./Pages/Blog";
 import Checkout from "./Pages/Checkout";
+import Successful from "./Pages/Successful";
 import Details from "./Pages/Details";
 import Contact from "./Pages/Contact";
 import Login from "./Pages/Login";
@@ -30,6 +31,7 @@ export default function App() {
         <Route path="/favourites" element={<Favourites />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/checkout" element={<Checkout />} />
+        <Route path="/successful" element={<Successful />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />

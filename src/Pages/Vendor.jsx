@@ -1,6 +1,5 @@
 import Avatar from "../assets/avatar.png";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import RepeatOutlinedIcon from "@mui/icons-material/RepeatOutlined";
 import { logout } from "../Slice/authSlice";

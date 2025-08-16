@@ -19,7 +19,7 @@ export default function Favorite() {
         {favorites.length === 0 ? (
           <h1 className="ml-124">You haven’t liked any product yet.</h1>
         ) : (
-          <div className="flex mt-25">
+          <div className="grid grid-cols-5 mt-25">
             {favorites.map((product) => (
               <div
                 key={product._id}
