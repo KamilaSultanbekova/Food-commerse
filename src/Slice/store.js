@@ -5,8 +5,8 @@ import FruitReducer from './fruitSlice'
 import favoritesReducer from "./favoritesSlice";
 import cartReducer from "./cartSlice";
 import authReducer from "./authSlice"
-import checkoutReducer from "./checkoutSlice"  
-import vendorReducer from "./vendorSlice"  
+import checkoutReducer from "./checkoutSlice"
+import vendorReducer from "./vendorSlice"
 import productReducer from './crudSlice';
 export const store = configureStore({
     reducer: {

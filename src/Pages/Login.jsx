@@ -42,7 +42,7 @@ export default function Login() {
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-              <h1>Password*</h1>
+          <h1>Password*</h1>
           <input
             type="password"
             placeholder="Password"

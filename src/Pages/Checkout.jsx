@@ -1,13 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { submitOrder } from "../Slice/checkoutSlice";
-import { useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import Coupon from "../assets/45.png";
 import FreeShip from "../assets/46.png";
 
 export default function Checkout() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
 
@@ -45,8 +45,7 @@ export default function Checkout() {
         totalPrice: total.toFixed(2),
       })
     );
-    navigate("/successful")
-
+    navigate("/successful");
   };
 
   return (

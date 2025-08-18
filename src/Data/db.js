@@ -370,28 +370,28 @@ export const ContactData = [
     {
         _id: 1,
         img: cont1,
-        name: "Payment only online" ,
+        name: "Payment only online",
         desc: "Tasigförsamhet beteendedesign. Mobile",
         desc2: "checkout. Ylig kärrtorpa."
     },
     {
         _id: 2,
         img: cont2,
-        name: "New stocks and sales" ,
+        name: "New stocks and sales",
         desc: "Tasigförsamhet beteendedesign. Mobile",
         desc2: "checkout. Ylig kärrtorpa."
     },
     {
         _id: 3,
         img: cont3,
-        name: "Quality assurance" ,
+        name: "Quality assurance",
         desc: "Tasigförsamhet beteendedesign. Mobile",
         desc2: "checkout. Ylig kärrtorpa."
     },
     {
         _id: 4,
         img: cont4,
-        name: "Delivery from 1 hour" ,
+        name: "Delivery from 1 hour",
         desc: "Tasigförsamhet beteendedesign. Mobile",
         desc2: "checkout. Ylig kärrtorpa."
     },

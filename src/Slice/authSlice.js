@@ -72,8 +72,7 @@ const authSlice = createSlice({
   },
   reducers: {
     logout: (state) => {
-      state.isAuthenticated = false; // Выходим
-      // Данные в localStorage остаются
+      state.isAuthenticated = false; 
     },
     restoreSession: (state) => {
       const savedUser = localStorage.getItem("user");

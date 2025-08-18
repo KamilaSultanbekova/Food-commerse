@@ -54,7 +54,6 @@ export default function Vendor() {
         </div>
 
         <div className="flex gap-10 mt-3">
-          {/* Sidebar */}
           <div className="border border-gray-400 rounded mt-5 ml-2 w-74 h-full">
             <p className="border-b border-b-gray-400 py-2 px-3 font-bold">
               Dashboard
@@ -85,7 +84,6 @@ export default function Vendor() {
             </p>
           </div>
 
-          {/* Form */}
           <div className="mt-5">
             <h1 className="mb-2 font-bold text-xl">Update account to Vendor</h1>
             <form onSubmit={handleSubmit}>
