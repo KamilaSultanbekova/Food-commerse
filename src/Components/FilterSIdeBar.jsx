@@ -10,7 +10,11 @@ export default function PriceFilter() {
   const navigate = useNavigate();
 
   const handleFilter = () => {
-    dispatch(setPriceRange({ min: Number(min), max: Number(max) }));
+    if (min !== "" && max !== "") {
+      dispatch(setPriceRange({ min: Number(min), max: Number(max) }));
+    } else {
+      alert("Please enter both minimum and maximum prices.");
+    }
   };
 
   const handleChange = (e) => {
@@ -25,6 +29,9 @@ export default function PriceFilter() {
           <input
             type="number"
             value={min}
+            required
+            min="0"
+            max="1000"
             onChange={(e) => setMin(e.target.value)}
             className="border border-gray-200 rounded-lg p-2 w-20"
           />
@@ -32,13 +39,16 @@ export default function PriceFilter() {
           <input
             type="number"
             value={max}
+            required
+            min="0"
+            max="1000"
             onChange={(e) => setMax(e.target.value)}
             className="border border-gray-200 rounded-lg p-2 w-20"
           />
         </div>
 
         <p className="mb-2">
-          Price: ${min} — ${max}
+          Price: ${min || 0} — ${max || 0}
         </p>
 
         <button

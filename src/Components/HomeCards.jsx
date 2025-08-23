@@ -185,7 +185,7 @@ export default function HomeCards() {
                   </s>
                 </div>
                 <NavLink to="/filterbeverages">
-                  <button className="text-sm text-gray-500 mt-3 border border-gray-500 rounded-full font-semibold pl-5 py-2 pr-23 text-left hover:bg-gray-200">
+                  <button className="w-full text-[14px] text-gray-500 mt-3 border border-gray-500 rounded-full font-semibold pl-5 py-2  text-left hover:bg-gray-200">
                     <h1> Add to cart</h1>
                   </button>
                 </NavLink>

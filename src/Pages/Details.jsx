@@ -12,6 +12,7 @@ import { toggleCart } from "../Slice/cartSlice";
 export default function Details() {
   const { id } = useParams();
   const dispatch = useDispatch();
+  const cart = useSelector((state) => state.cart);
 
   const toComparable = (v) => {
     const n = Number(v);
@@ -64,6 +65,7 @@ export default function Details() {
 
   const key = getKey(product);
   const isFavorite = favorites.some((item) => getKey(item) === key);
+  const isInCart = cart.some((item) => getKey(item) === key);
   const ratingValue = Number(product.rating) || 0;
 
   const handleIncrement = () => setCount((c) => c + 1);
@@ -139,10 +141,10 @@ export default function Details() {
               </button>
             </div>
             <button
-              onClick={toggleCart}
               className="bg-[#16A34A] text-white text-[14px] font-semibold py-3 px-5 rounded my-3 mx-5 "
+              onClick={() => dispatch(toggleCart(product))}
             >
-              Add to cart
+              {isInCart ? <h1>Added to cart</h1> : <h1>Add to cart</h1>}
             </button>
             <button className="bg-black text-white text-[14px] font-semibold py-3 px-7 rounded my-3 ">
               Buy now

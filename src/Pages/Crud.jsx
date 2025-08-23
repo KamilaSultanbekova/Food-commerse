@@ -24,7 +24,23 @@ export default function Products() {
     status: "",
   });
 
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setForm({ ...form, img: reader.result });
+    };
+    reader.readAsDataURL(file);
+  };
+
   const handleAdd = () => {
+    if (!form.name || !form.img) {
+      toast.error("Please provide product name and image!");
+      return;
+    }
+
     const newItem = {
       _id: Date.now(),
       img: form.img,
@@ -50,6 +66,7 @@ export default function Products() {
       status: "",
     });
   };
+
   const handleUpdate = (item) => {
     setForm({
       img: item.img,
@@ -90,11 +107,24 @@ export default function Products() {
   return (
     <div className="p-6 max-w-6xl mx-auto">
       <div className="bg-gray-100 p-6 rounded-2xl shadow mb-8 grid grid-cols-1 md:grid-cols-3 gap-4">
-        <TextField
-          label="Image URL"
-          value={form.img}
-          onChange={(e) => setForm({ ...form, img: e.target.value })}
-        />
+
+        <Button
+          variant="outlined"
+          component="label"
+          className="flex items-center justify-center"
+        >
+          Upload Image
+          <input type="file" hidden accept="image/*" onChange={handleImageUpload} />
+        </Button>
+
+        {form.img && (
+          <img
+            src={form.img}
+            alt="preview"
+            className="w-24 h-24 object-cover rounded-xl border"
+          />
+        )}
+
         <TextField
           label="Discount"
           value={form.discount}
@@ -126,6 +156,7 @@ export default function Products() {
           value={form.status}
           onChange={(e) => setForm({ ...form, status: e.target.value })}
         />
+
         {editingId ? (
           <Button variant="contained" onClick={handleSave} className="mt-4">
             Save
@@ -136,6 +167,7 @@ export default function Products() {
           </Button>
         )}
       </div>
+
       <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
         {products.map((item) => (
           <div
@@ -147,9 +179,7 @@ export default function Products() {
               alt={item.name}
               className="rounded-xl mb-3 w-full h-40 object-cover"
             />
-            <p className="text-sm text-red-500 font-semibold">
-              {item.discount}
-            </p>
+            <p className="text-sm text-red-500 font-semibold">{item.discount}</p>
             <h3 className="font-bold text-lg">{item.name}</h3>
             <p className="text-sm">Rating: {item.rating}</p>
             <p className="text-sm">Price: {item.price}</p>
