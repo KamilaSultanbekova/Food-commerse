@@ -9,6 +9,8 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { logout } from "../Slice/authSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { setSearchQuery, filterProducts } from "../Slice/filtersearchSlice";
+import { useEffect, useState } from "react";
 
 export default function Navbar() {
   const { isAuthenticated, user } = useSelector((state) => state.auth);
@@ -19,6 +21,62 @@ export default function Navbar() {
     navigate(e.target.value);
   };
 
+  const searchQuery = useSelector((state) => state.filterSearch.searchQuery);
+
+  const handleChangeF = (e) => {
+    dispatch(setSearchQuery(e.target.value));
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      dispatch(filterProducts());
+    }
+  };
+
+  const handleSearchClick = () => {
+    dispatch(filterProducts());
+  };
+
+  const [timeLeft, setTimeLeft] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
+
+  useEffect(() => {
+    let endTime = localStorage.getItem("saleEndTime");
+
+    if (!endTime) {
+      endTime = new Date().getTime() + 72 * 60 * 60 * 1000;
+      localStorage.setItem("saleEndTime", endTime);
+    } else {
+      endTime = Number(endTime);
+    }
+
+    const interval = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = endTime - now;
+
+      if (distance <= 0) {
+        clearInterval(interval);
+        localStorage.removeItem("saleEndTime");
+        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+      } else {
+        setTimeLeft({
+          days: Math.floor(distance / (1000 * 60 * 60 * 24)),
+          hours: Math.floor(
+            (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+          ),
+          minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
+          seconds: Math.floor((distance % (1000 * 60)) / 1000),
+        });
+      }
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div>
       <div className=" py-2 flex justify-center gap-10 bg-[#634C9F] text-white items-center">
@@ -27,10 +85,20 @@ export default function Navbar() {
           in.
         </h1>
         <h1 className="flex gap-3 text-sm">
-          Until the end of the sale: <span className="font-bold">47</span> days
-          <span className="font-bold">06</span> hours
-          <span className="font-bold">55</span> minutes
-          <span className="font-bold">51</span> sec.
+          Until the end of the sale:{" "}
+          <span className="font-bold">{timeLeft.days}</span> days
+          <span className="font-bold">
+            {String(timeLeft.hours).padStart(2, "0")}
+          </span>{" "}
+          hours
+          <span className="font-bold">
+            {String(timeLeft.minutes).padStart(2, "0")}
+          </span>{" "}
+          minutes
+          <span className="font-bold">
+            {String(timeLeft.seconds).padStart(2, "0")}
+          </span>{" "}
+          sec.
         </h1>
       </div>
       <div className="px-40 py-2 container mx-auto flex justify-between gap-10">
@@ -60,24 +128,38 @@ export default function Navbar() {
           <h1>Order Tracking</h1>
         </div>
       </div>
-      <div className="px-40 pt-5 container mx-auto flex gap-9">
+      <div className="px-40 pt-5 container mx-auto flex gap-5">
         <img src={Icon} className="w-50 h-full" />
         <div>
           <FmdGoodOutlinedIcon fontSize="large" />
         </div>
-        <h1 className="text-gray-500 text-sm">
-          Deliver to
-          <br />
-          <span className="text-gray-800 font-semibold">all</span>
-        </h1>
-        <input
-          className=" relative bg-gray-100 w-120 h-13 px-3 text-gray-900 text-sm rounded-lg border border-gray-200 focus:outline-none focus:ring-1 focus:ring-gray-300"
-          type="text"
-          placeholder="Search for products, categories or brands..."
-        />
-        <span className="absolute right-125 -translate-y-1/2 top-30">
-          <SearchIcon fontSize="large" />
-        </span>
+        <div className="flex">
+          <div className="text-gray-500 text-sm">
+            <h1>
+              Deliver to{" "}
+              <span className="text-gray-800 font-semibold">all</span>
+            </h1>
+          </div>
+        </div>
+
+        <div className="flex justify-between items-center bg-gray-100 w-full h-13 px-3 text-gray-900 text-sm rounded-lg border border-gray-200 focus:outline-none focus:ring-1 focus:ring-gray-300">
+          <Link to="/filtersearch" className="flex items-center w-full">
+            <input
+              className="border-0 outline-0 items-center w-full bg-transparent"
+              type="text"
+              value={searchQuery}
+              onChange={handleChangeF}
+              onKeyDown={handleKeyDown}
+              placeholder="Search for products, categories or brands..."
+            />
+          </Link>
+          <Link to="/filtersearch">
+            <button onClick={handleSearchClick}>
+              <SearchIcon fontSize="large" />
+            </button>
+          </Link>
+        </div>
+
         <div className="flex gap-2  ">
           {isAuthenticated ? (
             <>
@@ -108,11 +190,11 @@ export default function Navbar() {
           ) : (
             <>
               <div>
-                <Link to="/register" className="text-black">
-                  Sign in
+                <Link to="/register" className="text-black text-sm">
+                  Register
                 </Link>{" "}
                 <br />
-                <Link to="/login" className="text-black">
+                <Link to="/login" className="text-black text-sm">
                   Login
                 </Link>
               </div>
@@ -133,10 +215,9 @@ export default function Navbar() {
             onChange={handleChange}
             className="font-semibold w-17"
             name="Home"
+            defaultValue="/"
           >
-            <option value="/" defaultValue={true}>
-              Home
-            </option>
+            <option value="/">Home</option>
             <option value="/filterfruits">Fruits & Vegetables</option>
             <option value="/filterbeverages">Beverages</option>
           </select>
