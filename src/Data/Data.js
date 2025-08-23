@@ -198,7 +198,7 @@ export const FruitsVegetables = [
 ]
 export const Beverages = [
     {
-        _id: 1,
+        _id: 112,
         discount: "75%",
         img: Baverages1,
         name: "100 Percent Apple Juice – 64 fl oz Bottle",
@@ -209,7 +209,7 @@ export const Beverages = [
 
     },
     {
-        _id: 2,
+        _id: 21,
         discount: "41%",
         img: Baverages2,
         name: "Simply Orange Pulp Free Juice – 52 fl oz",
@@ -219,7 +219,7 @@ export const Beverages = [
         status: "IN STOCK"
     },
     {
-        _id: 3,
+        _id: 31,
         discount: "45%",
         img: Baverages3,
         name: "Vitaminwater zero sugar squeezed electrolyte…",
@@ -229,7 +229,7 @@ export const Beverages = [
         status: "IN STOCK"
     },
     {
-        _id: 4,
+        _id: 41,
         discount: "16%",
         img: Baverages4,
         name: "A&W Caffeine-Free, Low Sodium Root Beer Soda Po…",
@@ -239,7 +239,7 @@ export const Beverages = [
         status: "IN STOCK"
     },
     {
-        _id: 5,
+        _id: 51,
         discount: "58%",
         img: Baverages5,
         name: "Tostitos Pumpkins – 11oz",
@@ -249,7 +249,7 @@ export const Beverages = [
         status: "IN STOCK"
     },
     {
-        _id: 6,
+        _id: 61,
         discount: "18%",
         img: Baverages6,
         name: "SToK Black Unsweetened Cold Brew Coffee – 48 fl oz",
@@ -259,7 +259,7 @@ export const Beverages = [
         status: "IN STOCK"
     },
     {
-        _id: 7,
+        _id: 71,
         discount: "35%",
         img: Baverages7,
         name: "Starbucks Keurig K-Cup Holiday Blend – 22ct_8.9oz…",
@@ -269,7 +269,7 @@ export const Beverages = [
         status: "IN STOCK"
     },
     {
-        _id: 8,
+        _id: 81,
         discount: "21%",
         img: Baverages8,
         name: "Starbucks by Nespresso Vertuo Line Pods Medium…",
@@ -279,7 +279,7 @@ export const Beverages = [
         status: "IN STOCK"
     },
     {
-        _id: 9,
+        _id: 91,
         discount: "21%",
         img: Baverages9,
         name: "Smartwater Bottles – 6pk_16.9 fl oz",
@@ -289,7 +289,7 @@ export const Beverages = [
         status: "IN STOCK"
     },
     {
-        _id: 10,
+        _id: 101,
         discount: "24%",
         img: Baverages10,
         name: "Similac® Advance®_ Powder Baby Formula with Iron,…",
@@ -299,7 +299,7 @@ export const Beverages = [
         status: "IN STOCK"
     },
     {
-        _id: 11,
+        _id: 111,
         discount: "34%",
         img: Baverages11,
         name: "Schweppes Diet Ginger Ale 12 oz Cans – Pack of 24",
@@ -309,7 +309,7 @@ export const Beverages = [
         status: "IN STOCK"
     },
     {
-        _id: 12,
+        _id: 121,
         discount: "34%",
         img: Baverages12,
         name: "S.Pellegrino Sparkling Natural Mineral Water, 16.9…",
@@ -319,7 +319,7 @@ export const Beverages = [
         status: "IN STOCK"
     },
     {
-        _id: 13,
+        _id: 131,
         discount: "21%",
         img: Baverages13,
         name: "Red Bay Coffee Coltrane Medium Roast Coffee – 12oz",
@@ -329,7 +329,7 @@ export const Beverages = [
         status: "IN STOCK"
     },
     {
-        _id: 14,
+        _id: 141,
         discount: "17%",
         img: Baverages14,
         name: "Real Plant-Powered Protein Shake – Double Chocolate …",
@@ -339,7 +339,7 @@ export const Beverages = [
         status: "IN STOCK"
     },
     {
-        _id: 15,
+        _id: 151,
         discount: "17%",
         img: Baverages15,
         name: "Starbucks Black Unsweetened Cold Brew…",
@@ -349,7 +349,7 @@ export const Beverages = [
         status: "IN STOCK"
     },
     {
-        _id: 16,
+        _id: 161,
         discount: "34%",
         img: Baverages16,
         name: "Pop & Bottle Caramel Cold Brew Oat Milk Latte with…",
@@ -359,7 +359,7 @@ export const Beverages = [
         status: "IN STOCK"
     },
     {
-        _id: 17,
+        _id: 171,
         discount: "34%",
         img: Baverages17,
         name: "Pepsi Cola Soda Pop, 2 Liter Bottle",
@@ -369,7 +369,7 @@ export const Beverages = [
         status: "IN STOCK"
     },
     {
-        _id: 18,
+        _id: 181,
         discount: "10%",
         img: Baverages18,
         name: "Naturally Flavored Pumpkin Spice Light Roast Coffee –…",
@@ -379,7 +379,7 @@ export const Beverages = [
         status: "IN STOCK"
     },
     {
-        _id: 19,
+        _id: 191,
         discount: "50%",
         img: Baverages19,
         name: "Naked Green Machine Boosted Juice Smoothie –…",
@@ -389,7 +389,7 @@ export const Beverages = [
         status: "IN STOCK"
     },
     {
-        _id: 20,
+        _id: 201,
         discount: "6%",
         img: Baverages20,
         name: "Light Blood Orange Ginger – 4pk_200ml Bottles",
