@@ -8,6 +8,7 @@ import authReducer from "./authSlice"
 import checkoutReducer from "./checkoutSlice"
 import vendorReducer from "./vendorSlice"
 import productReducer from './crudSlice';
+import filterSearchReducer from './filtersearchSlice';
 export const store = configureStore({
     reducer: {
         form: formReducer,
@@ -19,6 +20,7 @@ export const store = configureStore({
         checkout: checkoutReducer,
         vendor: vendorReducer,
         products: productReducer,
+        filterSearch: filterSearchReducer,
 
     }
 })
