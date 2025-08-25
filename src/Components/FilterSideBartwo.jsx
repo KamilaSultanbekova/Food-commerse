@@ -22,7 +22,7 @@ export default function PriceFilter() {
   };
 
   return (
-    <div>
+    <div className="price-filter">
       <div className="p-4 border border-gray-300 rounded-lg w-64">
         <h2 className="font-bold mb-2">Widget price filter</h2>
         <div className="flex items-center space-x-2 mb-2">
@@ -58,59 +58,45 @@ export default function PriceFilter() {
           Filter
         </button>
       </div>
+
       <div className="mt-5">
-        <h1 className="text-xl font-semibold">Product Categories</h1>
-        <div className="flex items-center gap-3 mt-2">
-          <input
-            onChange={handleChange}
-            value="/filterfruits"
-            type="checkbox"
-            name="Fruits & Vegetables"
-          />
-          <h1>Fruits & Vegetables</h1>
-        </div>
-        <div className="flex items-center gap-3 mt-2">
-          <input type="checkbox" name="Baby & Pregnancy" />
-          <h1>Baby & Pregnancy</h1>
-        </div>
-        <div className="flex items-center gap-3 mt-2">
-          <input
-            onChange={handleChange}
-            value="/filterbeverages"
-            type="checkbox"
-            name="Beverages"
-          />
-          <h1>Beverages</h1>
-        </div>
-        <div className="flex items-center gap-3 mt-2">
-          <input type="checkbox" name="Meats & Seafood" />
-          <h1>Meats & Seafood</h1>
-        </div>
-        <div className="flex items-center gap-3 mt-2">
-          <input type="checkbox" name="Biscuits & Snacks" />
-          <h1>Biscuits & Snacks</h1>
-        </div>
-        <div className="flex items-center gap-3 mt-2">
-          <input type="checkbox" name="Breads & Bakery" />
-          <h1>Breads & Bakery</h1>
-        </div>
-        <div className="flex items-center gap-3 mt-2">
-          <input type="checkbox" name="Frozen Foods" />
-          <h1>Frozen Foods</h1>
-        </div>
-        <div className="flex items-center gap-3 mt-2">
-          <input type="checkbox" name="Grocery & Staples" />
-          <h1>Grocery & Staples</h1>
-        </div>
-        <div className="flex items-center gap-3 mt-2">
-          <input type="checkbox" name="Healthcare" />
-          <h1>Healthcare</h1>
-        </div>
-        <div className="flex items-center gap-3 mt-2">
-          <input type="checkbox" name="Household Needs" />
-          <h1>Household Needs</h1>
-        </div>
+        <h1 className="text-lg font-semibold">Product Categories</h1>
+
+        {[
+          { name: "Fruits & Vegetables", path: "/filterfruits" },
+          { name: "Baby & Pregnancy" },
+          { name: "Beverages", path: "/filterbeverages" },
+          { name: "Meats & Seafood" },
+          { name: "Biscuits & Snacks" },
+          { name: "Breads & Bakery" },
+          { name: "Frozen Foods" },
+          { name: "Grocery & Staples" },
+          { name: "Healthcare" },
+          { name: "Household Needs" },
+        ].map((cat, idx) => (
+          <div key={idx} className="flex items-center gap-3 mt-2">
+            <input
+              type="checkbox"
+              name={cat.name}
+              value={cat.path || ""}
+              onChange={cat.path ? handleChange : undefined}
+            />
+            <h1>{cat.name}</h1>
+          </div>
+        ))}
       </div>
+
+      <style>{`
+        @media (max-width: 768px) {
+          .price-filter {
+            width: 100%;
+            padding: 10px;
+          }
+          .price-filter .w-64 {
+            width: 100%;
+          }
+        }
+      `}</style>
     </div>
   );
 }

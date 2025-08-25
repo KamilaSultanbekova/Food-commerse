@@ -22,8 +22,8 @@ export default function PriceFilter() {
   };
 
   return (
-    <div>
-      <div className="p-4 border border-gray-300 rounded-lg w-64">
+    <div className="w-full lg:w-64">
+      <div className="p-4 border border-gray-300 rounded-lg">
         <h2 className="font-bold mb-2">Widget price filter</h2>
         <div className="flex items-center space-x-2 mb-2">
           <input
@@ -33,7 +33,7 @@ export default function PriceFilter() {
             min="0"
             max="1000"
             onChange={(e) => setMin(e.target.value)}
-            className="border border-gray-200 rounded-lg p-2 w-20"
+            className="border border-gray-200 rounded-lg p-2 w-20 sm:w-24"
           />
           <span>-</span>
           <input
@@ -43,7 +43,7 @@ export default function PriceFilter() {
             min="0"
             max="1000"
             onChange={(e) => setMax(e.target.value)}
-            className="border border-gray-200 rounded-lg p-2 w-20"
+            className="border border-gray-200 rounded-lg p-2 w-20 sm:w-24"
           />
         </div>
 
@@ -53,63 +53,37 @@ export default function PriceFilter() {
 
         <button
           onClick={handleFilter}
-          className="bg-gray-200 px-4 py-2 rounded-lg hover:bg-gray-300"
+          className="bg-gray-200 px-4 py-2 rounded-lg hover:bg-gray-300 w-full"
         >
           Filter
         </button>
       </div>
+
       <div className="mt-5">
-        <h1 className="text-xl font-semibold">Product Categories</h1>
-        <div className="flex items-center gap-3 mt-2">
-          <input
-            onChange={handleChange}
-            value="/filterfruits"
-            type="checkbox"
-            name="Fruits & Vegetables"
-          />
-          <h1>Fruits & Vegetables</h1>
-        </div>
-        <div className="flex items-center gap-3 mt-2">
-          <input type="checkbox" name="Baby & Pregnancy" />
-          <h1>Baby & Pregnancy</h1>
-        </div>
-        <div className="flex items-center gap-3 mt-2">
-          <input
-            onChange={handleChange}
-            value="/filterbeverages"
-            type="checkbox"
-            name="Beverages"
-          />
-          <h1>Beverages</h1>
-        </div>
-        <div className="flex items-center gap-3 mt-2">
-          <input type="checkbox" name="Meats & Seafood" />
-          <h1>Meats & Seafood</h1>
-        </div>
-        <div className="flex items-center gap-3 mt-2">
-          <input type="checkbox" name="Biscuits & Snacks" />
-          <h1>Biscuits & Snacks</h1>
-        </div>
-        <div className="flex items-center gap-3 mt-2">
-          <input type="checkbox" name="Breads & Bakery" />
-          <h1>Breads & Bakery</h1>
-        </div>
-        <div className="flex items-center gap-3 mt-2">
-          <input type="checkbox" name="Frozen Foods" />
-          <h1>Frozen Foods</h1>
-        </div>
-        <div className="flex items-center gap-3 mt-2">
-          <input type="checkbox" name="Grocery & Staples" />
-          <h1>Grocery & Staples</h1>
-        </div>
-        <div className="flex items-center gap-3 mt-2">
-          <input type="checkbox" name="Healthcare" />
-          <h1>Healthcare</h1>
-        </div>
-        <div className="flex items-center gap-3 mt-2">
-          <input type="checkbox" name="Household Needs" />
-          <h1>Household Needs</h1>
-        </div>
+        <h1 className="text-lg font-semibold">Product Categories</h1>
+
+        {[
+          { name: "Fruits & Vegetables", path: "/filterfruits" },
+          { name: "Baby & Pregnancy" },
+          { name: "Beverages", path: "/filterbeverages" },
+          { name: "Meats & Seafood" },
+          { name: "Biscuits & Snacks" },
+          { name: "Breads & Bakery" },
+          { name: "Frozen Foods" },
+          { name: "Grocery & Staples" },
+          { name: "Healthcare" },
+          { name: "Household Needs" },
+        ].map((cat, idx) => (
+          <div key={idx} className="flex items-center gap-3 mt-2">
+            <input
+              type="checkbox"
+              name={cat.name}
+              value={cat.path || ""}
+              onChange={cat.path ? handleChange : undefined}
+            />
+            <h1>{cat.name}</h1>
+          </div>
+        ))}
       </div>
     </div>
   );

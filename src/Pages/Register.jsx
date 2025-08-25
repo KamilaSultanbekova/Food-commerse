@@ -22,51 +22,61 @@ export default function Register() {
   };
 
   return (
-    <div className="px-40 py-10 container mx-auto flex justify-center">
-      <div>
-        <h2 className="text-2xl flex justify-center font-bold mb-4">
-          Register
-        </h2>
-        <h1 className="text-sm  mb-4 flex justify-center">
+    <div className="container mx-auto px-4 py-10 flex justify-center">
+      <div className="w-full sm:w-[450px] md:w-[500px] lg:w-[600px] bg-white p-6 rounded-xl shadow-md">
+        <h2 className="text-2xl text-center font-bold mb-4">Register</h2>
+
+        <p className="text-sm mb-4 text-center text-gray-600">
           There are many advantages to creating an account: the payment process
-          is <br />
-          faster, shipment tracking is possible and much more.
-        </h1>
-        <form onSubmit={handleSubmit} className="max-w-md space-y-4">
-          <h1>Username*</h1>
-          <input
-            type="text"
-            name="name"
-            onChange={handleChange}
-            className="border border-gray-300 p-3 w-full rounded-xl"
-            required
-          />
-          <h1>Email address*</h1>
-          <input
-            type="email"
-            name="email"
-            onChange={handleChange}
-            className="border border-gray-300 p-3 w-full rounded-xl"
-            required
-          />
-          <h1>Password*</h1>
-          <input
-            type="password"
-            name="password"
-            onChange={handleChange}
-            className="border border-gray-300 p-3 w-full rounded-xl"
-            required
-          />
-          <h1 className="text-sm  mb-4 flex justify-center">
+          is faster, shipment tracking is possible and much more.
+        </p>
+
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label className="text-sm font-medium">Username*</label>
+            <input
+              type="text"
+              name="name"
+              onChange={handleChange}
+              className="border border-gray-300 p-3 w-full rounded-xl mt-1 focus:ring-2 focus:ring-[#634C9F] outline-none"
+              required
+            />
+          </div>
+
+          <div>
+            <label className="text-sm font-medium">Email address*</label>
+            <input
+              type="email"
+              name="email"
+              onChange={handleChange}
+              className="border border-gray-300 p-3 w-full rounded-xl mt-1 focus:ring-2 focus:ring-[#634C9F] outline-none"
+              required
+            />
+          </div>
+
+          <div>
+            <label className="text-sm font-medium">Password*</label>
+            <input
+              type="password"
+              name="password"
+              onChange={handleChange}
+              className="border border-gray-300 p-3 w-full rounded-xl mt-1 focus:ring-2 focus:ring-[#634C9F] outline-none"
+              required
+            />
+          </div>
+
+          <p className="text-xs text-center text-gray-500">
             Your personal data will be used to support your experience
             throughout this website, to manage access to your account, and for
             other purposes described in our privacy policy.
-          </h1>
-          {error && <p className="text-red-500">{error}</p>}
+          </p>
+
+          {error && <p className="text-red-500 text-center">{error}</p>}
+
           <button
             type="submit"
             disabled={loading}
-            className="bg-[#634C9F] text-white px-49 py-2 rounded"
+            className="w-full bg-[#634C9F] text-white font-semibold py-3 rounded-lg hover:bg-[#503a82] transition"
           >
             {loading ? "Loading..." : "Register"}
           </button>

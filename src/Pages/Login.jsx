@@ -21,51 +21,59 @@ export default function Login() {
   };
 
   return (
-    <div className="px-40 py-10 container mx-auto flex justify-center">
-      <div>
-        <h2 className="text-2xl flex justify-center font-bold mb-4">Login</h2>
+    <div className="container mx-auto px-4 py-10 flex justify-center">
+      <div className="w-full sm:w-[450px] md:w-[500px] lg:w-[600px] bg-white p-6 rounded-xl shadow-md">
+        <h2 className="text-2xl text-center font-bold mb-4">Login</h2>
+
         {isAuthenticated && (
-          <div className="mb-3 text-green-600 flex justify-center">
+          <div className="mb-3 text-green-600 text-center text-sm">
             ✅ You are authenticated as {user?.name || user?.email}
           </div>
         )}
-        <h1 className="text-sm  mb-4 flex justify-center">
+
+        <p className="text-sm mb-4 text-center">
           If you have an account, sign in with your username or email address.
-        </h1>
-        <form className="max-w-md space-y-4" onSubmit={handleLogin}>
-          <h1>Email address*</h1>
-          <input
-            type="email"
-            placeholder="Email"
-            className="border border-gray-300 p-3 w-full rounded-xl"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-          <h1>Password*</h1>
-          <input
-            type="password"
-            placeholder="Password"
-            className="border border-gray-300 p-3 w-full rounded-xl"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
+        </p>
+
+        <form className="space-y-4" onSubmit={handleLogin}>
+          <div>
+            <label className="text-sm font-medium">Email address*</label>
+            <input
+              type="email"
+              placeholder="Email"
+              className="border border-gray-300 p-3 w-full rounded-xl mt-1 focus:ring-2 focus:ring-[#634C9F] outline-none"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+
+          <div>
+            <label className="text-sm font-medium">Password*</label>
+            <input
+              type="password"
+              placeholder="Password"
+              className="border border-gray-300 p-3 w-full rounded-xl mt-1 focus:ring-2 focus:ring-[#634C9F] outline-none"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
 
           <button
             type="submit"
             disabled={loading}
-            className="bg-[#634C9F] text-white px-51 my-4 py-3 rounded"
+            className="w-full bg-[#634C9F] text-white font-semibold my-4 py-3 rounded-lg hover:bg-[#503a82] transition"
           >
             {loading ? "Loading..." : "Login"}
           </button>
         </form>
 
-        {error && <p className="text-red-500 mt-2">{error}</p>}
+        {error && <p className="text-red-500 mt-2 text-center">{error}</p>}
 
         <button
           onClick={handleRestore}
-          className="bg-[#634C9F] text-white px-30 py-3 rounded"
+          className="w-full bg-[#634C9F] text-white font-semibold py-3 rounded-lg hover:bg-[#503a82] transition mt-4"
         >
           Войти снова из LocalStorage
         </button>

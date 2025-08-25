@@ -105,9 +105,8 @@ export default function Products() {
   };
 
   return (
-    <div className="p-6 max-w-6xl mx-auto">
-      <div className="bg-gray-100 p-6 rounded-2xl shadow mb-8 grid grid-cols-1 md:grid-cols-3 gap-4">
-
+    <div className="p-4 sm:p-6 max-w-6xl mx-auto">
+ъ      <div className="bg-gray-100 p-4 sm:p-6 rounded-2xl shadow mb-8 grid grid-cols-1 md:grid-cols-3 gap-4">
         <Button
           variant="outlined"
           component="label"
@@ -121,7 +120,7 @@ export default function Products() {
           <img
             src={form.img}
             alt="preview"
-            className="w-24 h-24 object-cover rounded-xl border"
+            className="w-24 h-24 object-cover rounded-xl border mx-auto md:mx-0"
           />
         )}
 
@@ -129,46 +128,52 @@ export default function Products() {
           label="Discount"
           value={form.discount}
           onChange={(e) => setForm({ ...form, discount: e.target.value })}
+          fullWidth
         />
         <TextField
           label="Name"
           value={form.name}
           onChange={(e) => setForm({ ...form, name: e.target.value })}
+          fullWidth
         />
         <TextField
           label="Rating"
           type="number"
           value={form.rating}
           onChange={(e) => setForm({ ...form, rating: e.target.value })}
+          fullWidth
         />
         <TextField
           label="Price"
           value={form.price}
           onChange={(e) => setForm({ ...form, price: e.target.value })}
+          fullWidth
         />
         <TextField
           label="Last Price"
           value={form.lastprice}
           onChange={(e) => setForm({ ...form, lastprice: e.target.value })}
+          fullWidth
         />
         <TextField
           label="Status"
           value={form.status}
           onChange={(e) => setForm({ ...form, status: e.target.value })}
+          fullWidth
         />
 
         {editingId ? (
-          <Button variant="contained" onClick={handleSave} className="mt-4">
+          <Button variant="contained" onClick={handleSave} className="mt-2 sm:mt-4">
             Save
           </Button>
         ) : (
-          <Button variant="contained" onClick={handleAdd} className="mt-4">
+          <Button variant="contained" onClick={handleAdd} className="mt-2 sm:mt-4">
             Add Product
           </Button>
         )}
       </div>
 
-      <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+      <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
         {products.map((item) => (
           <div
             key={item._id}

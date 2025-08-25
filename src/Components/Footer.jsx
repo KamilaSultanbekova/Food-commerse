@@ -10,27 +10,30 @@ import Lastpart from "../assets/88.png";
 
 export default function Footer() {
   return (
-    <div className="bg-[#F3F4F6] px-40 pt-15 pb-15 container mx-auto mt-5">
-      <div className="flex justify-between">
+    <div className="bg-[#F3F4F6] px-6 md:px-16 lg:px-40 pt-10 pb-10 container mx-auto mt-5">
+      <div className="flex flex-col lg:flex-row justify-between gap-6">
         <div>
-          <h1 className="text-2xl font-bold m">
+          <h1 className="text-xl lg:text-2xl font-bold">
             Join our newsletter for £10 offs
           </h1>
-          <h1 className="text-gray-500 pt-3">
-            Register now to get latest updates on promotions & <br />
-            coupons.Don’t worry, we not spam!
+          <h1 className="text-gray-500 pt-3 text-sm lg:text-base">
+            Register now to get latest updates on promotions &{" "}
+            <br className="hidden lg:block" />
+            coupons. Don’t worry, we not spam!
           </h1>
         </div>
         <div className="items-center">
-          <input
-            className="border border-gray-300 px-3 py-3 bg-white rounded-bl-xl rounded-tl-xl pr-64 my-3"
-            type="text"
-            placeholder="Enter your email address"
-          />
-          <button className="bg-[#634C9F] rounded-br-xl rounded-tr-xl text-white p-3">
-            SEND
-          </button>
-          <h1 className="text-gray-500 text-sm">
+          <div className="flex flex-col sm:flex-row">
+            <input
+              className="border border-gray-300 px-3 py-3 bg-white rounded-tl-xl rounded-bl-xl sm:rounded-bl-xl sm:rounded-tl-xl sm:pr-20 w-full sm:w-auto"
+              type="text"
+              placeholder="Enter your email address"
+            />
+            <button className="bg-[#634C9F] rounded-tr-xl rounded-br-xl text-white p-3 w-full sm:w-auto">
+              SEND
+            </button>
+          </div>
+          <h1 className="text-gray-500 text-xs sm:text-sm mt-2">
             By subscribing you agree to our{" "}
             <span className="text-black">
               Terms & Conditions and Privacy & Cookies Policy.
@@ -38,84 +41,106 @@ export default function Footer() {
           </h1>
         </div>
       </div>
-      <br /> <br />
-      <hr className="text-gray-500" />
-      <div className="my-4 flex gap-10">
-        <div>
+
+      <br />
+      <hr className="text-gray-400" />
+
+      <div className="my-6 flex flex-col lg:flex-row gap-10 lg:gap-16">
+        <div className="flex-1">
           <h1 className="font-bold text-lg">Do You Need Help ?</h1>
           <h1 className="my-2 text-gray-500 text-sm">
-            Autoseligen syr. Nek diarask fröbomba. Nör <br />
+            Autoseligen syr. Nek diarask fröbomba. Nör{" "}
+            <br className="hidden lg:block" />
             antipol kynoda nynat. Pressa fåmoska.
           </h1>
           <div className="flex gap-2 items-center mt-5">
+            <CallIcon fontSize="large" />
             <div>
-              <CallIcon fontSize="large" />
-            </div>
-            <div>
-              <h1 className="text-gray-600">Monday-Friday: 08am-9pm</h1>
-              <h1 className="text-black text-2xl font-bold">0 800 300-353</h1>
+              <h1 className="text-gray-600 text-sm">Monday-Friday: 08am-9pm</h1>
+              <h1 className="text-black text-xl font-bold">0 800 300-353</h1>
             </div>
           </div>
           <div className="flex gap-2 items-center mt-5">
+            <EmailOutlinedIcon fontSize="large" />
             <div>
-              <EmailOutlinedIcon fontSize="large" />
-            </div>
-            <div>
-              <h1 className="text-gray-600">Need help with your order?</h1>
+              <h1 className="text-gray-600 text-sm">
+                Need help with your order?
+              </h1>
               <h1 className="text-black text-md font-bold">info@example.com</h1>
             </div>
           </div>
         </div>
-        <div>
+
+        <div className="flex-1">
           <h1 className="text-black font-semibold">Make Money with Us</h1>
-          <h1 className="mt-1 text-gray-500">Sell on Grogin</h1>
-          <h1 className="mt-1 text-gray-500">Sell Your Services on Grogin</h1>
-          <h1 className="mt-1 text-gray-500">Sell on Grogin Business</h1>
-          <h1 className="mt-1 text-gray-500">Sell Your Apps on Grogin</h1>
-          <h1 className="mt-1 text-gray-500">Become an Affilate</h1>
-          <h1 className="mt-1 text-gray-500">Advertise Your Products</h1>
-          <h1 className="mt-1 text-gray-500">Sell-Publish with Us</h1>
-          <h1 className="mt-1 text-gray-500">Become an Blowwe Vendor</h1>
+          {[
+            "Sell on Grogin",
+            "Sell Your Services on Grogin",
+            "Sell on Grogin Business",
+            "Sell Your Apps on Grogin",
+            "Become an Affiliate",
+            "Advertise Your Products",
+            "Sell-Publish with Us",
+            "Become a Blowwe Vendor",
+          ].map((item, i) => (
+            <h1 key={i} className="mt-1 text-gray-500 text-sm">
+              {item}
+            </h1>
+          ))}
         </div>
-        <div>
+
+        <div className="flex-1">
           <h1 className="text-black font-semibold">Let Us Help You</h1>
-          <h1 className="mt-1 text-gray-500">Accessibility Statement</h1>
-          <h1 className="mt-1 text-gray-500">Your Orders</h1>
-          <h1 className="mt-1 text-gray-500">Returns & Replacements</h1>
-          <h1 className="mt-1 text-gray-500">Shipping Rates & Policies</h1>
-          <h1 className="mt-1 text-gray-500">Refund and Returns Policy</h1>
-          <h1 className="mt-1 text-gray-500">Privacy Policy</h1>
-          <h1 className="mt-1 text-gray-500">Terms and Conditions</h1>
-          <h1 className="mt-1 text-gray-500">Cookie Settings</h1>
-          <h1 className="mt-2 text-gray-500">Help Center</h1>
+          {[
+            "Accessibility Statement",
+            "Your Orders",
+            "Returns & Replacements",
+            "Shipping Rates & Policies",
+            "Refund and Returns Policy",
+            "Privacy Policy",
+            "Terms and Conditions",
+            "Cookie Settings",
+            "Help Center",
+          ].map((item, i) => (
+            <h1 key={i} className="mt-1 text-gray-500 text-sm">
+              {item}
+            </h1>
+          ))}
         </div>
-        <div>
+
+        <div className="flex-1">
           <h1 className="text-black font-semibold">Get to Know Us</h1>
-          <h1 className="mt-1 text-gray-500">Careers for Grogin</h1>
-          <h1 className="mt-1 text-gray-500">About Grogin</h1>
-          <h1 className="mt-1 text-gray-500">Inverstor Relations</h1>
-          <h1 className="mt-1 text-gray-500">Grogin Devices</h1>
-          <h1 className="mt-1 text-gray-500">Customer reviews</h1>
-          <h1 className="mt-1 text-gray-500">Social Responsibility</h1>
-          <h1 className="mt-2 text-gray-500">Store Locations</h1>
+          {[
+            "Careers for Grogin",
+            "About Grogin",
+            "Investor Relations",
+            "Grogin Devices",
+            "Customer reviews",
+            "Social Responsibility",
+            "Store Locations",
+          ].map((item, i) => (
+            <h1 key={i} className="mt-1 text-gray-500 text-sm">
+              {item}
+            </h1>
+          ))}
         </div>
-        <div>
+
+        <div className="flex-1">
           <h1 className="font-semibold">Download our app</h1>
-          <div className="flex gap-2 mt-3">
-            <img className="w-30 h-full" src={GooglePlay} />
-            <h1 className="text-sm">
+          <div className="flex gap-2 mt-3 items-center">
+            <img className="w-24" src={GooglePlay} />
+            <h1 className="text-xs sm:text-sm">
               Download App Get <br /> -10% Discount
             </h1>
           </div>
-          <div className="flex gap-2 mt-3">
-            <img className="w-30 h-full" src={AppStore} />
-            <h1 className="text-sm">
-              Download App Get <br />
-              -20% Discount
+          <div className="flex gap-2 mt-3 items-center">
+            <img className="w-24" src={AppStore} />
+            <h1 className="text-xs sm:text-sm">
+              Download App Get <br /> -20% Discount
             </h1>
           </div>
           <div className="mt-5">
-            <h1 className="text-lg ">Follow us on social media:</h1>
+            <h1 className="text-md">Follow us on social media:</h1>
             <div className="flex gap-2 mt-3">
               <img src={Facebook} />
               <img src={SomeX} />
@@ -125,20 +150,20 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      <hr className="text-gray-500" />
-      <div className="flex justify-between mt-10">
-        <div>
-          <img src={Lastpart} />
-        </div>
-        <div>
+
+      <hr className="text-gray-400" />
+
+      <div className="flex flex-col sm:flex-row justify-between items-center mt-6 gap-4">
+        <img src={Lastpart} className="w-40" />
+        <div className="flex flex-wrap gap-3 text-sm">
           <a href="#" className="underline">
-            Terms and Conditions{" "}
+            Terms and Conditions
           </a>
           <a href="#" className="underline">
-            Privacy Policy{" "}
+            Privacy Policy
           </a>
           <a href="#" className="underline">
-            Order Tracking{" "}
+            Order Tracking
           </a>
         </div>
       </div>

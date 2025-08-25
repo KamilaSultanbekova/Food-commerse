@@ -41,36 +41,36 @@ export default function FilterBeverages() {
   }, [productsAll, filteredProducts, dispatch]);
 
   return (
-    <div className="px-40 py-5 container mx-auto flex justify-between gap-10">
-      <div>
+    <div className="px-4 md:px-8 lg:px-40 py-5 container mx-auto flex flex-col lg:flex-row gap-10">
+      <div className="w-full lg:w-1/4">
         <PriceFilter />
       </div>
 
-      <div>
+      <div className="w-full lg:w-3/4">
         <div
-          className="h-[330px] bg-center bg-cover mx-auto rounded-xl"
+          className="h-[220px] sm:h-[280px] lg:h-[330px] bg-center bg-cover rounded-xl"
           style={{ backgroundImage: `url(${bgimg})` }}
         >
-          <div className="ml-10 pt-10">
-            <span className="text-[#7C2D12] font-semibold bg-[#FFEDD5] px-2 text-sm py-2 rounded-full">
+          <div className="ml-4 sm:ml-10 pt-6 sm:pt-10">
+            <span className="text-[#7C2D12] font-semibold bg-[#FFEDD5] px-2 text-xs sm:text-sm py-1 sm:py-2 rounded-full">
               Only This Week
             </span>
-            <h1 className="text-[#39245F] text-3xl font-bold w-120 pt-3">
+            <h1 className="text-[#39245F] text-xl sm:text-2xl lg:text-3xl font-bold pt-3 leading-snug">
               Grocery store with different <br /> treasures
             </h1>
-            <h1 className="text-gray-400 w-120 pt-3">
+            <h1 className="text-gray-400 text-sm sm:text-base pt-2">
               We have prepared special discounts for you on grocery <br />
               products...
             </h1>
-            <div className="flex mt-5 gap-4">
-              <button className="bg-white px-4 py-2 rounded-2xl flex gap-4 border border-gray-300">
+            <div className="flex mt-4 gap-3">
+              <button className="bg-white px-3 sm:px-4 py-2 rounded-2xl flex gap-2 sm:gap-4 border border-gray-300 text-sm sm:text-base">
                 Shop Now <ArrowRightAltIcon />
               </button>
             </div>
           </div>
         </div>
 
-        <div className="mt-4 grid grid-cols-5">
+        <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
           {filteredProducts.map((data) => {
             const key = getKey(data);
             const isFavorite = favorites.some((item) => getKey(item) === key);
@@ -79,13 +79,12 @@ export default function FilterBeverages() {
             return (
               <div
                 key={key}
-                className="border border-gray-200 p-3 py-5 rounded-md"
+                className="border border-gray-200 p-3 py-5 rounded-md hover:shadow transition"
               >
                 <div className="flex items-start justify-between">
                   <h1 className="bg-red-600 rounded-full text-[10px] text-white p-1">
                     {data.discount}
                   </h1>
-
                   <button onClick={() => dispatch(toggleLike(data))}>
                     {isFavorite ? (
                       <FavoriteIcon fontSize="small" color="error" />
@@ -102,6 +101,7 @@ export default function FilterBeverages() {
                 />
 
                 <h1 className="text-md py-2">{data.name}</h1>
+
                 <div className="flex items-center gap-2">
                   <Rating
                     name={`rating-${key}`}
@@ -119,26 +119,22 @@ export default function FilterBeverages() {
                   <s className="font-semibold text-sm pl-1">{data.lastprice}</s>
                 </div>
 
-                <div className="flex py-3 justify-between items-center ">
+                <div className="flex py-3 justify-between items-center">
                   <div className="bg-[#16A34A] hover:bg-[#157e3b] rounded-md p-1">
                     <button onClick={() => dispatch(toggleCart(data))}>
                       {isInCart ? (
-                        <DoneIcon fontSize="meduim" color="error" />
+                        <DoneIcon fontSize="medium" color="error" />
                       ) : (
-                        <ShoppingCartIcon fontSize="meduim" />
+                        <ShoppingCartIcon fontSize="medium" />
                       )}
                     </button>
                   </div>
-                  <div>
-                    <h1 className="text-[#16A34A] font-semibold pt-1">
-                      {data.status}
-                    </h1>
-                  </div>
-                  <div>
-                    <Link to={`/products/${data._id}`}>
-                      <VisibilityIcon fontSize="medium" />
-                    </Link>
-                  </div>
+                  <h1 className="text-[#16A34A] font-semibold">
+                    {data.status}
+                  </h1>
+                  <Link to={`/products/${data._id}`}>
+                    <VisibilityIcon fontSize="medium" />
+                  </Link>
                 </div>
               </div>
             );

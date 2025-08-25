@@ -25,14 +25,12 @@ export default function Details() {
     const buckets = [
       state.fruits?.all ?? state.fruits?.items,
       state.beverages?.all ?? state.beverages?.items,
-
       state.fruitsfilter?.all ??
         state.fruitsfilter?.items ??
         state.fruitsfilter?.filteredProducts,
       state.beveragesfilter?.all ??
         state.beveragesfilter?.items ??
         state.beveragesfilter?.filteredProducts,
-
       state.cart,
       state.favorites,
     ].filter(Boolean);
@@ -72,24 +70,26 @@ export default function Details() {
   const handleDecrement = () => setCount((c) => (c > 1 ? c - 1 : c));
 
   return (
-    <div className="px-40 py-8 container mx-auto">
-      <div className="flex gap-8">
-        <div className="flex">
+    <div className="container mx-auto px-4 md:px-10 lg:px-40 py-8">
+      <div className="flex flex-col lg:flex-row gap-8">
+        <div className="relative flex justify-center">
           {product.discount && (
-            <span className="bg-red-600 rounded-full text-[10px] text-white p-2 px-3 h-8">
+            <span className="absolute top-2 left-2 bg-red-600 rounded-full text-[10px] text-white px-3 py-1">
               {product.discount}
             </span>
           )}
           <img
             src={product.img}
             alt={product.name}
-            className="w-120 rounded-lg"
+            className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:w-120 rounded-lg"
           />
         </div>
 
         <div className="flex-1">
           <div className="flex items-start justify-between">
-            <h1 className="text-3xl font-bold">{product.name}</h1>
+            <h1 className="text-xl sm:text-2xl md:text-3xl font-bold">
+              {product.name}
+            </h1>
           </div>
 
           <div className="flex items-center gap-2 mt-1">
@@ -104,29 +104,29 @@ export default function Details() {
             </span>
           </div>
 
-          <p className="mt-3 text-gray-600">
+          <p className="mt-3 text-gray-600 text-sm sm:text-base">
             {product.description ??
-              "Vivamus adipiscing nisl ut dolor dignissim semper. Nulla luctus malesuada tincidunt. Class aptent taciti sociosqu ad litora torquent Vivamus adipiscing nisl ut dolor dignissim semper."}
+              "Vivamus adipiscing nisl ut dolor dignissim semper. Nulla luctus malesuada tincidunt. Class aptent taciti sociosqu ad litora torquent..."}
           </p>
 
           <div className="gap-2 pt-3">
             <div>
-              <span className="text-2xl text-red-600 font-bold">
+              <span className="text-xl sm:text-2xl text-red-600 font-bold">
                 {product.price}
               </span>
               {product.lastprice && (
-                <s className="font-semibold text-sm text-gray-500">
+                <s className="ml-2 font-semibold text-sm text-gray-500">
                   {product.lastprice}
                 </s>
               )}
             </div>
             <div>
-              <button className="bg-[#16A34A] text-white text-[14px] font-semibold py-3 px-3 rounded my-3 ">
+              <button className="bg-[#16A34A] text-white text-[12px] sm:text-[14px] font-semibold py-2 sm:py-3 px-3 rounded my-3 ">
                 Order on WhatsApp
               </button>
             </div>
-            <div>
-              <img src={Offer} alt="" />
+            <div className="w-full max-w-xs sm:max-w-md">
+              <img src={Offer} alt="" className="w-full" />
             </div>
           </div>
 
@@ -141,24 +141,25 @@ export default function Details() {
               </button>
             </div>
             <button
-              className="bg-[#16A34A] text-white text-[14px] font-semibold py-3 px-5 rounded my-3 mx-5 "
+              className="bg-[#16A34A] text-white text-[12px] sm:text-[14px] font-semibold py-2 sm:py-3 px-5 rounded my-3 mx-3"
               onClick={() => dispatch(toggleCart(product))}
             >
-              {isInCart ? <h1>Added to cart</h1> : <h1>Add to cart</h1>}
+              {isInCart ? "Added to cart" : "Add to cart"}
             </button>
-            <button className="bg-black text-white text-[14px] font-semibold py-3 px-7 rounded my-3 ">
+            <button className="bg-black text-white text-[12px] sm:text-[14px] font-semibold py-2 sm:py-3 px-7 rounded my-3 ">
               Buy now
             </button>
           </div>
 
-          <div className="w-170">
-            <img src={Payment} alt="Payment methods" />
+          <div className="max-w-xs sm:max-w-md mt-4">
+            <img src={Payment} alt="Payment methods" className="w-full" />
           </div>
-          <div className="mt-3">
+
+          <div className="mt-3 flex items-center">
             <button
               aria-label="toggle favorite"
               onClick={() => dispatch(toggleLike(product))}
-              className=" p-1 border border-gray-300 rounded-xl"
+              className="p-1 border border-gray-300 rounded-xl"
             >
               {isFavorite ? (
                 <FavoriteIcon fontSize="small" color="error" />
@@ -170,29 +171,19 @@ export default function Details() {
           </div>
         </div>
       </div>
-      <div className="mt-15">
-        <h1 className="text-2xl ">Description</h1>
-        <h1 className="text-[15px] mt-5">
+
+      <div className="mt-12">
+        <h1 className="text-xl sm:text-2xl font-semibold">Description</h1>
+        <p className="text-[13px] sm:text-[15px] mt-5 leading-relaxed">
           Quisque varius diam vel metus mattis, id aliquam diam rhoncus. Proin
-          vitae magna in dui finibus malesuada et at nulla. Morbi elit
-          ex,viverra vitae ante vel, blandit feugiat ligula. Fusce <br />
-          fermentum iaculis nibh, at sodales leo maximus a. Nullam ultricies
-          sodales nunc, in pellentesque lorem mattis quis. Cras imperdiet est in
-          nunc tristique lacinia. Nullam aliquam mauris <br />
-          eu accumsan tincidunt. Suspendisse velit ex, aliquet vel ornare vel,
-          dignissim a tortor.
-        </h1>
-        <h1 className="text-[15px] mt-5">
+          vitae magna in dui finibus malesuada et at nulla. Morbi elit ex,
+          viverra vitae ante vel, blandit feugiat ligula...
+        </p>
+        <p className="text-[13px] sm:text-[15px] mt-5 leading-relaxed">
           Morbi ut sapien vitae odio accumsan gravida. Morbi vitae erat auctor,
           eleifend nunc a, lobortis neque. Praesent aliquam dignissim viverra.
-          Maecenas lacus odio, feugiat eu nunc sit amet, maximus sagittis dolor.
-          Vivamus nisi sapien, elementum sit amet eros sit amet, ultricies
-          cursus ipsum. Sed consequat luctus ligula. Curabitur laoreet rhoncus
-          blandit. Aenean vel diam ut arcu pharetra dignissim ut sed leo.
-          Vivamus faucibus, ipsum in vestibulum vulputate, lorem orci convallis
-          quam, sit amet consequat nulla felis pharetra lacus. Duis semper erat
-          mauris, sed egestas purus commodo vel.
-        </h1>
+          Maecenas lacus odio, feugiat eu nunc sit amet...
+        </p>
       </div>
     </div>
   );
