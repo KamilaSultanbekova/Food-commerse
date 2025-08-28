@@ -157,7 +157,7 @@ export default function HomeCards() {
 
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
           {CardData.map((data) => {
-            const key = getKey(data);
+            const key = getKey(data._id);
             return (
               <div
                 key={key}
@@ -223,7 +223,7 @@ export default function HomeCards() {
 
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 mt-7">
           {CardData2.map((data) => {
-            const key = getKey(data);
+            const key = getKey(data._id);
             return (
               <div
                 key={key}

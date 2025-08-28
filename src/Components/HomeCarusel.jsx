@@ -20,13 +20,13 @@ export default function HomeCarusel() {
           <SwiperSlide key={data.id}>
             <div
               className="
-                h-[250px] sm:h-[350px] lg:h-[500px] 
-                bg-center bg-cover mx-auto flex items-center
+                h-[250px] sm:h-[350px] lg:h-[510px] 
+                bg-center bg-cover mx-auto flex items-center 
               "
               style={{ backgroundImage: `url(${data.bgimage})` }}
             >
-              <div className="px-4 sm:px-10 lg:ml-40 lg:pt-28">
-                <span className="text-xs sm:text-sm lg:text-base text-[#166534] font-semibold bg-gradient-to-r from-[#5f8c70] to-transparent px-2 py-1 rounded-sm">
+              <div className="px-4 sm:px-10 lg:ml-33 lg:pt-15 pb-15">
+                <span className="text-lg sm:text-sm lg:text-base text-[#166534] font-semibold bg-gradient-to-r from-[#5f8c70] to-transparent px-2 py-1 rounded-sm">
                   {data.title}
                 </span>
 
