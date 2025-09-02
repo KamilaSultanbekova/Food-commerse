@@ -23,8 +23,6 @@ import Rating from "@mui/material/Rating";
 import { NavLink } from "react-router-dom";
 
 export default function HomeCards() {
-  const getKey = (p) => p?._id ?? p?.id;
-
   return (
     <div className="container mx-auto pt-10 px-4 sm:px-6 lg:px-40">
       <div className="grid grid-cols-3 sm:grid-cols-5 lg:grid-cols-9 gap-4 sm:gap-6 lg:gap-10 place-items-center">
@@ -157,10 +155,9 @@ export default function HomeCards() {
 
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
           {CardData.map((data) => {
-            const key = getKey(data._id);
             return (
               <div
-                key={key}
+                key={data._id}
                 className="border border-gray-200 p-3 py-5 rounded-md h-full flex flex-col"
               >
                 <img
@@ -223,10 +220,9 @@ export default function HomeCards() {
 
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 mt-7">
           {CardData2.map((data) => {
-            const key = getKey(data._id);
             return (
               <div
-                key={key}
+                key={data._id}
                 className="border border-gray-200 p-3 py-5 rounded-md h-full flex flex-col"
               >
                 <img
@@ -237,7 +233,7 @@ export default function HomeCards() {
                   {data.title1}
                 </h1>
                 <Rating
-                  name={`rating-${key}`}
+                  name={`rating-${data._id}`}
                   value={data.rating}
                   size="small"
                   readOnly
@@ -307,10 +303,9 @@ export default function HomeCards() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6">
           <div className="grid grid-cols-2 gap-4">
             {CardsThree.map((data) => {
-              const key = getKey(data._id);
               return (
                 <div
-                  key={key}
+                  key={data._id}
                   className="border border-gray-200 p-4 rounded-lg shadow-sm hover:shadow-md transition"
                 >
                   <img
@@ -345,7 +340,7 @@ export default function HomeCards() {
                   </div>
 
                   <NavLink to="/filterbeverages">
-                  <button className="w-full text-[14px] text-gray-500 mt-3 border border-gray-500 rounded-full font-semibold pl-5 py-2 text-left hover:bg-gray-200">
+                    <button className="w-full text-[14px] text-gray-500 mt-3 border border-gray-500 rounded-full font-semibold pl-5 py-2 text-left hover:bg-gray-200">
                       Add to cart
                     </button>
                   </NavLink>
@@ -386,10 +381,9 @@ export default function HomeCards() {
 
           <div className="grid grid-cols-2 gap-4">
             {CardsFour.map((data) => {
-              const key = getKey(data._id);
               return (
                 <div
-                  key={key}
+                  key={data._id}
                   className="border border-gray-200 p-4 rounded-lg shadow-sm hover:shadow-md transition"
                 >
                   <img
@@ -420,7 +414,7 @@ export default function HomeCards() {
                   </div>
 
                   <NavLink to="/filterfruits">
-                  <button className="w-full text-[14px] text-gray-500 mt-3 border border-gray-500 rounded-full font-semibold pl-5 py-2 text-left hover:bg-gray-200">
+                    <button className="w-full text-[14px] text-gray-500 mt-3 border border-gray-500 rounded-full font-semibold pl-5 py-2 text-left hover:bg-gray-200">
                       Add to cart
                     </button>
                   </NavLink>

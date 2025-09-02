@@ -17,10 +17,11 @@ export default function FilterSearch() {
   const isFirst = React.useRef(true);
   const favorites = useSelector((state) => state.favorites);
   const cart = useSelector((state) => state.cart);
-  const getKey = (p) => p?._id ?? p?.id;
   const filteredProducts = useSelector(
     (state) => state.filterSearch.filteredProducts
   );
+
+  const getKey = (p) => p?._id ?? p?.id;
 
   React.useEffect(() => {
     if (isFirst.current) {

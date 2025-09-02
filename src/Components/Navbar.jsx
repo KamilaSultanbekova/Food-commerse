@@ -24,8 +24,15 @@ export default function Navbar() {
   };
   const searchQuery = useSelector((state) => state.filterSearch.searchQuery);
   const handleChangeF = (e) => {
-    dispatch(setSearchQuery(e.target.value));
+    const value = e.target.value;
+    dispatch(setSearchQuery(value));
+    dispatch(filterProducts());
+
+    if (window.location.pathname !== "/filtersearch") {
+      navigate("/filtersearch");
+    }
   };
+
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
       dispatch(filterProducts());
@@ -38,7 +45,7 @@ export default function Navbar() {
     navigate("/filtersearch");
   };
 
-
+  
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
